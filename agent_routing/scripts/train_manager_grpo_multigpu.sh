@@ -46,7 +46,7 @@ for i in $(seq 1 24); do
     sleep 5
 done
 
-CUDA_VISIBLE_DEVICES=1,2,3 \
+VIRTUAL_ENV=/home/yizzhao/research_6.8/.venv PATH=/home/yizzhao/research_6.8/.venv/bin:$PATH CUDA_VISIBLE_DEVICES=1,2,3 \
 PYTHONUTF8=1 \
 accelerate launch \
     --config_file configs/accelerate_zero3.yaml \

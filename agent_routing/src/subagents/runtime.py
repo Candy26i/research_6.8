@@ -60,6 +60,7 @@ def _render_chat(tokenizer, messages, add_generation_prompt: bool) -> str:
 
 @dataclass
 class FrozenSubagent:
+
     base_model: str
     adapter_path: Optional[str]
     agent_kind: str             # "extractor" | "reasoner" | "rule_applier"
@@ -261,6 +262,7 @@ class RemoteSubagentPool:
             "messages": messages,
             "temperature": 0.0,
             "max_tokens": self._max_new_tokens,
+            "extra_body": {"chat_template_kwargs": {"enable_thinking": False}},
         }
         resp = _requests.post(
             f"{self._server_url}/v1/chat/completions",
